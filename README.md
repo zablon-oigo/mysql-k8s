@@ -16,6 +16,7 @@ The primary objective is to demonstrate how Kubernetes preserves database data e
 
 
 #### Architecture Diagram
+<img width="698" height="468" alt="mysql excalidraw" src="https://github.com/user-attachments/assets/8bdc5a4a-34c8-48e9-91ae-6f78e1bdeacd" />
 
 
 #### Prerequisites
