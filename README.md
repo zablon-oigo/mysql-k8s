@@ -149,3 +149,94 @@ SHOW TABLES;
 
 SELECT * FROM products;
 ```
+
+## Deploy MySQL using Helm Chart
+
+Create namespace
+```sh
+kubectl create namespace db
+```
+
+Verify 
+```sh
+kubectl get namespace db
+```
+
+Update your Helm repositories
+```sh
+helm repo update
+```
+Update the dependencies for the MySQL chart:
+```sh
+helm dependency update ./mysql-chart
+```
+Verify that the dependency was downloaded:
+
+```sh
+ls -lh mysql-chart/charts/
+```
+
+Lint the chart
+```sh
+helm lint ./mysql-chart
+```
+Render the Kubernetes Manifests
+
+Before installing anything, render the chart locally:
+```sh
+helm template mysql ./mysql-chart -n db
+```
+
+Install MySQL
+
+Install the Helm release:
+```sh
+helm install mysql ./mysql-chart -n db
+
+Check the Helm release:
+```sh
+helm list -n db
+```
+
+Verify the MySQL Pod
+Check the Pods:
+```sh
+kubectl get pods -n db
+```
+Inspect Pod
+```sh
+kubectl describe pod mysql-0 -n db
+```
+Connect to MySQL
+
+Once the Pod is running, connect to MySQL from inside the Pod:
+```sh
+kubectl exec -it -n db mysql-0 -- mysql -h 127.0.0.1 -uroot -ppassword123
+```
+
+Verify the Database and Data
+
+```sh
+SHOW DATABASES;
+
+USE inventory;
+
+SHOW TABLES;
+
+SELECT * FROM products;
+```
+
+Verify Persistent Storage
+```sh
+kubectl get pvc -n db
+```
+Uninstall MySQL
+```sh
+helm uninstall mysql -n db
+kubectl get all -n db
+```
+Delete Storage
+```sh
+kubectl get pvc -n db
+kubectl delete pvc --all -n db
+```
