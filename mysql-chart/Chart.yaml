@@ -1,0 +1,7 @@
+---
+apiVersion: v2
+name: mysql
+description: MySQL 8.4.4 StatefulSet deployed with Helm
+type: application
+version: 1.0.0
+appVersion: "8.4.4"
