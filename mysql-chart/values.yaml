@@ -1,0 +1,19 @@
+---
+image:
+  repository: mysql
+  tag: "8.4.4"
+  pullPolicy: IfNotPresent
+
+mysql:
+  rootPassword: "password123"
+  database: inventory
+
+persistence:
+  enabled: true
+  size: 5Gi
+  accessMode: ReadWriteOnce
+
+service:
+  port: 3306
+
+replicaCount: 1
