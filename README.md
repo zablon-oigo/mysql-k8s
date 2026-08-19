@@ -152,6 +152,10 @@ SELECT * FROM products;
 
 ## Deploy MySQL using Helm Chart
 
+#### Architecture Diagram
+<img width="788" height="408" alt="mysql-helm excalidraw" src="https://github.com/user-attachments/assets/21c18614-7553-46bb-acfc-720d0e43e598" />
+
+
 Create namespace
 ```sh
 kubectl create namespace db
